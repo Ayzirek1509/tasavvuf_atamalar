@@ -114,7 +114,7 @@ class _QuizSelectScreen extends StatelessWidget {
             Text(
               'Jami $totalTerms ta atama mavjud',
               style: TextStyle(
-                color: AppColors.primaryGreen.withOpacity(0.7),
+                color: AppColors.primaryGreen.withValues(alpha: 0.7),
                 fontSize: 15,
               ),
             ),
@@ -180,9 +180,9 @@ class _QuizOption extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: color.withOpacity(0.08),
+            color: color.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: color.withOpacity(0.3), width: 1.5),
+            border: Border.all(color: color.withValues(alpha: 0.3), width: 1.5),
           ),
           child: Row(
             children: [
@@ -212,7 +212,7 @@ class _QuizOption extends StatelessWidget {
                     Text(
                       description,
                       style: TextStyle(
-                        color: color.withOpacity(0.7),
+                        color: color.withValues(alpha: 0.7),
                         fontSize: 13,
                       ),
                     ),
@@ -289,31 +289,54 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
     _animController.forward();
   }
 
-  /// Definitionni qisqartiradi: birinchi jumlani oladi, 65 belgidan uzun bo'lsa kesadi
-  String _shortenDefinition(String definition) {
-    // Birinchi jumlani ol (nuqta yoki ';' gacha)
-    final dotIndex = definition.indexOf('.');
-    final semiIndex = definition.indexOf(';');
+  /// Atama nomini ta'rifdan tozalaydi va ta'rifning qisqa ko'rinishini qaytaradi.
+  /// Maqsad: ta'rifda atama nomini bevosita ko'rsatmaslik.
+  String _meaningSnippet(String term, String definition) {
+    // Atamaning izohi ko'pincha qavslar bilan boshlanadi: "(arab. ...) — ..."
+    // Ularni olib tashlash uchun "—" yoki "-" dan keyingi qismni olamiz.
+    String text = definition.trim();
 
-    String firstPart = definition;
-    if (dotIndex > 0 && dotIndex < 80) {
-      firstPart = definition.substring(0, dotIndex + 1);
-    } else if (semiIndex > 0 && semiIndex < 80) {
-      firstPart = definition.substring(0, semiIndex);
-    }
-
-    // Agar hali ham uzun bo'lsa, 65 belgida qirq
-    if (firstPart.length > 65) {
-      // So'z o'rtasida qirqmaslik uchun oxirgi bo'shliqni top
-      final trimmed = firstPart.substring(0, 65);
-      final lastSpace = trimmed.lastIndexOf(' ');
-      if (lastSpace > 40) {
-        return '${trimmed.substring(0, lastSpace)}...';
+    // Boshidagi qavsdagi etimologiyani olib tashlash
+    if (text.startsWith('(')) {
+      final closeIdx = text.indexOf(')');
+      if (closeIdx > 0 && closeIdx < text.length - 1) {
+        text = text.substring(closeIdx + 1).trim();
       }
-      return '${trimmed}...';
     }
 
-    return firstPart;
+    // "—" yoki "–" yoki "-" dan keyingi asosiy mazmunni olamiz
+    for (final sep in ['—', '–', ' - ']) {
+      final idx = text.indexOf(sep);
+      if (idx > 0 && idx < 30) {
+        text = text.substring(idx + sep.length).trim();
+        break;
+      }
+    }
+
+    // Atama nomini ta'rif ichidan olib tashlash (case-insensitive almashtirish)
+    final termLower = term.toLowerCase();
+    final lowerText = text.toLowerCase();
+    final termIdx = lowerText.indexOf(termLower);
+    if (termIdx >= 0) {
+      text = '${text.substring(0, termIdx)}...${text.substring(termIdx + term.length)}';
+    }
+
+    // Birinchi jumlani olish
+    final dotIdx = text.indexOf('.');
+    if (dotIdx > 20 && dotIdx < 180) {
+      text = text.substring(0, dotIdx + 1);
+    }
+
+    // Maksimal 180 belgi
+    if (text.length > 180) {
+      final trimmed = text.substring(0, 180);
+      final lastSpace = trimmed.lastIndexOf(' ');
+      text = lastSpace > 100
+          ? '${trimmed.substring(0, lastSpace)}...'
+          : '$trimmed...';
+    }
+
+    return text.trim();
   }
 
   void _generateQuestions() {
@@ -322,22 +345,21 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
     final selected = terms.take(widget.count).toList();
 
     _questions = selected.map((term) {
+      final correctTerm = term['term']!;
       final wrongTerms = List.of(widget.allTerms)
-        ..removeWhere((e) => e['term'] == term['term'])
+        ..removeWhere((e) => e['term'] == correctTerm)
         ..shuffle(random);
 
-      // Variantlar uchun qisqartirilgan definitionlar
-      final wrongs = wrongTerms
-          .take(3)
-          .map((e) => _shortenDefinition(e['definition']!))
-          .toList();
+      // Variantlar — qisqa atamalar nomi
+      final wrongs = wrongTerms.take(3).map((e) => e['term']!).toList();
+      final options = [...wrongs, correctTerm]..shuffle(random);
+      final correctIndex = options.indexOf(correctTerm);
 
-      final correctShort = _shortenDefinition(term['definition']!);
-      final options = [...wrongs, correctShort]..shuffle(random);
-      final correctIndex = options.indexOf(correctShort);
+      // Savol — ta'rifning qisqa ko'rinishi
+      final meaning = _meaningSnippet(correctTerm, term['definition']!);
 
       return _Question(
-        term: term['term']!,
+        term: meaning,
         correctIndex: correctIndex,
         options: options,
       );
@@ -440,7 +462,7 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
                 value: progress,
-                backgroundColor: AppColors.primaryGreen.withOpacity(0.15),
+                backgroundColor: AppColors.primaryGreen.withValues(alpha: 0.15),
                 valueColor: const AlwaysStoppedAnimation<Color>(
                   AppColors.primaryGreen,
                 ),
@@ -460,7 +482,7 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryGreen.withOpacity(0.3),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.3),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -469,7 +491,7 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                 child: Column(
                   children: [
                     const Text(
-                      'Quyidagi atamaning ta\'rifini toping:',
+                      'Quyidagi ta\'rifga mos atamani toping:',
                       textScaler: TextScaler.linear(1.0),
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -484,8 +506,9 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.w800,
+                        fontSize: 17,
+                        height: 1.45,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -510,7 +533,7 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
 
                     if (!_answered) {
                       bgColor = AppColors.panelBg(context);
-                      borderColor = AppColors.stroke(context).withOpacity(0.4);
+                      borderColor = AppColors.stroke(context).withValues(alpha: 0.4);
                       textColor = AppColors.mainText(context);
                     } else if (index == q.correctIndex) {
                       bgColor = const Color(0xFFE8F5E9);
@@ -532,9 +555,9 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                       );
                     } else {
                       bgColor = AppColors.panelBg(context);
-                      borderColor = AppColors.stroke(context).withOpacity(0.2);
+                      borderColor = AppColors.stroke(context).withValues(alpha: 0.2);
                       textColor =
-                          AppColors.secondaryText(context).withOpacity(0.5);
+                          AppColors.secondaryText(context).withValues(alpha: 0.5);
                     }
 
                     return GestureDetector(
@@ -560,7 +583,7 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                               width: 30,
                               height: 30,
                               decoration: BoxDecoration(
-                                color: borderColor.withOpacity(0.15),
+                                color: borderColor.withValues(alpha: 0.15),
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -580,19 +603,19 @@ class _QuizPlayScreenState extends State<_QuizPlayScreen>
                                 q.options[index],
                                 textScaler: const TextScaler.linear(1.0),
                                 softWrap: true,
-                                maxLines: 3,
+                                maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: textColor,
-                                  fontSize: 14,
+                                  fontSize: 17,
                                   height: 1.4,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
                             if (trailingIcon != null) ...[
                               const SizedBox(width: 8),
-                              trailingIcon!,
+                              trailingIcon,
                             ],
                           ],
                         ),
@@ -695,10 +718,10 @@ class _ResultScreen extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: resultColor.withOpacity(0.1),
+                  color: resultColor.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: resultColor.withOpacity(0.3),
+                    color: resultColor.withValues(alpha: 0.3),
                     width: 3,
                   ),
                 ),
@@ -734,7 +757,7 @@ class _ResultScreen extends StatelessWidget {
                       child: CircularProgressIndicator(
                         value: correct / total,
                         strokeWidth: 12,
-                        backgroundColor: resultColor.withOpacity(0.1),
+                        backgroundColor: resultColor.withValues(alpha: 0.1),
                         valueColor: AlwaysStoppedAnimation<Color>(resultColor),
                       ),
                     ),

@@ -29,12 +29,12 @@ class MenuCard extends StatelessWidget {
             color: AppColors.cardBg(context),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.stroke(context).withOpacity(0.35),
+              color: AppColors.stroke(context).withValues(alpha: 0.35),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.16),
+                color: Colors.black.withValues(alpha: 0.16),
                 blurRadius: 6,
                 offset: const Offset(0, 3),
               ),

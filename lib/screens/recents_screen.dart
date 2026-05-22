@@ -78,11 +78,11 @@ class _RecentsScreenState extends State<RecentsScreen> {
                         color: AppColors.panelBg(context),
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(
-                          color: AppColors.stroke(context).withOpacity(0.35),
+                          color: AppColors.stroke(context).withValues(alpha: 0.35),
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: AppColors.stroke(context).withOpacity(0.15),
+                            color: AppColors.stroke(context).withValues(alpha: 0.15),
                             blurRadius: 8,
                             offset: const Offset(2, 4),
                           ),
@@ -93,7 +93,7 @@ class _RecentsScreenState extends State<RecentsScreen> {
                           CircleAvatar(
                             radius: 22,
                             backgroundColor:
-                                AppColors.primaryGreen.withOpacity(0.12),
+                                AppColors.primaryGreen.withValues(alpha: 0.12),
                             child: const Icon(
                               Icons.history_rounded,
                               color: AppColors.primaryGreen,
@@ -134,7 +134,7 @@ class _EmptyRecent extends StatelessWidget {
             Icon(
               Icons.history_toggle_off_rounded,
               size: 76,
-              color: AppColors.primaryGreen.withOpacity(0.45),
+              color: AppColors.primaryGreen.withValues(alpha: 0.45),
             ),
             const SizedBox(height: 18),
             const Text(

@@ -206,8 +206,8 @@ class _HadithCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.panelBg(context),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: stroke.withOpacity(0.45), width: 1.2),
-            boxShadow: [BoxShadow(color: stroke.withOpacity(0.22), blurRadius: 8, spreadRadius: 1, offset: const Offset(2, 4))],
+            border: Border.all(color: stroke.withValues(alpha: 0.45), width: 1.2),
+            boxShadow: [BoxShadow(color: stroke.withValues(alpha: 0.22), blurRadius: 8, spreadRadius: 1, offset: const Offset(2, 4))],
           ),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),

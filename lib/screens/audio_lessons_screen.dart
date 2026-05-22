@@ -8,7 +8,7 @@ class AudioLessonsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chapters = [
+    const chapters = [
       _Chapter(
         number: '1-bob',
         title: 'Tariqatlarning shakllanish tarixi',
@@ -106,10 +106,10 @@ class _ChapterCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.panelBg(context),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: stroke.withOpacity(0.45), width: 1.2),
+              border: Border.all(color: stroke.withValues(alpha: 0.45), width: 1.2),
               boxShadow: [
                 BoxShadow(
-                  color: stroke.withOpacity(0.2),
+                  color: stroke.withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(2, 4),
                 ),
@@ -131,7 +131,7 @@ class _ChapterCard extends StatelessWidget {
                       gradient: LinearGradient(
                         colors: [
                           AppColors.primaryGreen,
-                          AppColors.primaryGreen.withOpacity(0.7),
+                          AppColors.primaryGreen.withValues(alpha: 0.7),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -139,7 +139,7 @@ class _ChapterCard extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.primaryGreen.withOpacity(0.3),
+                          color: AppColors.primaryGreen.withValues(alpha: 0.3),
                           blurRadius: 6,
                           offset: const Offset(0, 2),
                         ),
@@ -160,7 +160,7 @@ class _ChapterCard extends StatelessWidget {
                           chapter.number,
                           textScaler: const TextScaler.linear(1.0),
                           style: TextStyle(
-                            color: AppColors.primaryGreen.withOpacity(0.7),
+                            color: AppColors.primaryGreen.withValues(alpha: 0.7),
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
@@ -189,7 +189,7 @@ class _ChapterCard extends StatelessWidget {
                     ),
                   ),
                   Icon(Icons.chevron_right,
-                      color: AppColors.primaryGreen.withOpacity(0.7),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.7),
                       size: 28),
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../utils/json_loader.dart';   // ⬅️ YANGI import
+import 'term_detail_screen.dart';
 
 class TermListScreen extends StatefulWidget {
   final String title;
@@ -100,7 +101,7 @@ class _TermListScreenState extends State<TermListScreen> {
                           separatorBuilder: (_, __) => Divider(
                               height: 1,
                               color: AppColors.stroke(context)
-                                  .withOpacity(0.25)),
+                                  .withValues(alpha: 0.25)),
                           itemBuilder: (context, index) {
                             final item = filtered[index];
                             return ListTile(
@@ -139,23 +140,10 @@ class _TermListScreenState extends State<TermListScreen> {
   }
 
   void _showDetails(BuildContext context, TermItem item) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        backgroundColor: AppColors.panelBg(context),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(item.title,
-            style: const TextStyle(
-                color: AppColors.primaryGreen, fontWeight: FontWeight.w800)),
-        content: SingleChildScrollView(
-            child: Text(item.description,
-                style: TextStyle(
-                    color: AppColors.mainText(context), height: 1.45))),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Yopish'))
-        ],
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => TermDetailScreen(item: item),
       ),
     );
   }

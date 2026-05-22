@@ -24,16 +24,16 @@ class BooksScreen extends StatelessWidget {
       'assets/images/tasavvuf_osiyo.png',
     ),
     (
-      'Tasavvuf Atamalar',
+      'Tasavvuf Atamalari',
       'Nilufar Toychiyeva',
-      'Tasavvufga oid asosiy atamalar izohi va tushuntirishlari.',
-      'assets/images/tasavvuf_atamalar.png',
+      'Izohli lug‘atga kiritilgan mavzular hanafiylik an’analari asosida shakllangan Movarounnahr tasavvufining bag‘rikeng mohiyatini tarixiy manbalar asosida ko‘rib chiqish va uning yuksak insoniy g‘oyalarini ilmiy tahlil etish nuqtai nazaridan yoritilgan. Zero, tasavvufga oid tushuncha va atamalarni noxolis talqin qilish orqali jamiyatda nosog‘lom qarashlar uyg‘otish xavfi bor ekan, birlamchi manbalar asosida yaratilgan tasavvufiy atamalarning izohi muhim ahamiyat kasb etadi. Izohli lug‘atda Markaziy Osiyo mintaqasiga xos bo‘lgan so‘fiy atamalarga urg‘u qaratish bilan bir qatorda, jahon tasavvufiga oid tushunchalarga ham o‘rin berilgan.\n\nUshbu nashr O‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Fan va texnologiyalarni rivojlantirishni muvofiqlashtirish qo‘mitasi tomonidan moliyalashtirilgan A1-044-raqamli «Movarounnahr tasavvuf ta’limotlari: asliyat va talqinlar, tarix va hozirgi zamon, tahlil va xulosalar» amaliy loyihasi doirasida amalga oshirilgan.\n\nO‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Din ishlari bo‘yicha qo‘mitaning 5303-sonli xulosasi asosida tayyorlandi.',
+      'assets/images/tasavvuf_atamalar.jpg',
     ),
     (
       'Tasavvufga Kirish',
       'O‘quv qo‘llanma',
-      'Boshlang‘ich o‘quvchilar uchun tasavvufga kirish mavzulari.',
-      'assets/images/tasavvuf_kirish.png',
+      'Mazkur darslikda tasavvuf tarixi, ta’limoti va g‘oyalari, tariqatlarning qadimdagi va hozirgi holatlari, mintaqaviy xususiyatlari, globallashuv sharoitida tariqatlar faollashuvi, soxta sufiylik, tariqatchilik va boshqa ko‘plab mavzular yoritilgan. Mazkur darslikni tuzishda manba va adabiyotlardan keng foydalanilgan. Darslik tavsiya etilgan adabiyotlar ro‘yxati, glossariy, mavzuga oid savollar, tayanch iboralar, mustaqil ish topshiriqlari bilan ta’minlangan.\n\nUshbu nashr O‘zbekiston Respublikasi Innovatsion rivojlanish vazirligi tomonidan moliyalashtirilgan № P3-20170930192-raqamli amaliy loyihasi doirasida amalga oshirildi.\n\nO‘zbekiston Respublikasi Oliy va o‘rta maxsus ta’lim vazirligining 2019-yil 27-dekabrdagi №1186-sonli buyrug‘iga asosan nashrga tavsiya etilgan.\n\nRo‘yxatga olish raqami №1186-011.\n\nO‘zbekiston Respublikasi Vazirlar Mahkamasi huzuridagi Din ishlari bo‘yicha qo‘mitaning 3311-sonli xulosasi asosida tayyorlandi.',
+      'assets/images/tasavvuf_kirish.jpg',
     ),
   ];
 
@@ -83,11 +83,11 @@ class BooksScreen extends StatelessWidget {
                 color: AppColors.panelBg(context),
                 borderRadius: BorderRadius.circular(22),
                 border: Border.all(
-                  color: AppColors.stroke(context).withOpacity(0.35),
+                  color: AppColors.stroke(context).withValues(alpha: 0.35),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.stroke(context).withOpacity(0.18),
+                    color: AppColors.stroke(context).withValues(alpha: 0.18),
                     blurRadius: 10,
                     offset: const Offset(2, 5),
                   ),
@@ -102,7 +102,7 @@ class BooksScreen extends StatelessWidget {
                       child: Container(
                         width: 86,
                         height: 106,
-                        color: AppColors.primaryGreen.withOpacity(0.08),
+                        color: AppColors.primaryGreen.withValues(alpha: 0.08),
                         child: Image.asset(
                           b.$4,
                           fit: BoxFit.cover,
@@ -142,7 +142,7 @@ class BooksScreen extends StatelessWidget {
                         Text(
                           'Batafsil o‘qish',
                           style: TextStyle(
-                            color: AppColors.primaryGreen.withOpacity(0.9),
+                            color: AppColors.primaryGreen.withValues(alpha: 0.9),
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
@@ -153,7 +153,7 @@ class BooksScreen extends StatelessWidget {
                   const SizedBox(width: 8),
                   Icon(
                     Icons.chevron_right_rounded,
-                    color: AppColors.primaryGreen.withOpacity(0.75),
+                    color: AppColors.primaryGreen.withValues(alpha: 0.75),
                     size: 32,
                   ),
                 ],
@@ -214,7 +214,7 @@ class BookDetailScreen extends StatelessWidget {
                     width: 190,
                     height: 240,
                     decoration: BoxDecoration(
-                      color: AppColors.primaryGreen.withOpacity(0.08),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.08),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Image.asset(

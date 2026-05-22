@@ -39,7 +39,7 @@ class AppDrawer extends StatelessWidget {
                     _DrawerItem(
                       icon: Icons.email_outlined,
                       bgColor: const Color(0xFFE3F1DC),
-                      iconColor: co nst Color(0xFF2F80C8),
+                      iconColor: const Color(0xFF2F80C8),
                       title: 'Murojaat',
                       onTap: () => _open(context, const ContactScreen()),
                     ),
@@ -70,7 +70,7 @@ class AppDrawer extends StatelessWidget {
                             scale: 0.62,
                             child: Switch(
                               value: themeProvider.isDarkMode,
-                              activeColor: AppColors.primaryGreen,
+                              activeThumbColor: AppColors.primaryGreen,
                               activeTrackColor: AppColors.primaryGreen,
                               inactiveThumbColor: Colors.black,
                               inactiveTrackColor: Colors.white,

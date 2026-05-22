@@ -133,7 +133,7 @@ class _PersonalDiaryScreenState extends State<PersonalDiaryScreen> {
                 color: AppColors.panelBg(context),
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(
-                  color: AppColors.stroke(context).withOpacity(0.4),
+                  color: AppColors.stroke(context).withValues(alpha: 0.4),
                 ),
               ),
               child: Column(
@@ -156,7 +156,7 @@ class _PersonalDiaryScreenState extends State<PersonalDiaryScreen> {
                               color: selected ? p.color : p.bg,
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: p.color.withOpacity(selected ? 1 : 0.4),
+                                color: p.color.withValues(alpha: selected ? 1 : 0.4),
                                 width: selected ? 1.5 : 1,
                               ),
                             ),
@@ -252,7 +252,7 @@ class _PersonalDiaryScreenState extends State<PersonalDiaryScreen> {
                       children: [
                         Icon(Icons.task_alt,
                             size: 56,
-                            color: AppColors.primaryGreen.withOpacity(0.3)),
+                            color: AppColors.primaryGreen.withValues(alpha: 0.3)),
                         const SizedBox(height: 12),
                         Text(
                           _items.isEmpty
@@ -297,9 +297,8 @@ class _TodoItem {
   _TodoItem({
     required this.text,
     required this.priority,
-    this.done = false,
     required this.createdAt,
-  });
+  }) : done = false;
 }
 
 class _Priority {
@@ -328,9 +327,9 @@ class _StatCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withOpacity(0.3)),
+          border: Border.all(color: color.withValues(alpha: 0.3)),
         ),
         child: Column(
           children: [
@@ -345,7 +344,7 @@ class _StatCard extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                color: color.withOpacity(0.8),
+                color: color.withValues(alpha: 0.8),
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -383,7 +382,7 @@ class _FilterChip extends StatelessWidget {
           border: Border.all(
             color: selected
                 ? AppColors.primaryGreen
-                : AppColors.stroke(context).withOpacity(0.5),
+                : AppColors.stroke(context).withValues(alpha: 0.5),
           ),
         ),
         child: Text(
@@ -427,7 +426,7 @@ class _TodoCard extends StatelessWidget {
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
-          color: const Color(0xFFE53935).withOpacity(0.15),
+          color: const Color(0xFFE53935).withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(16),
         ),
         child: const Icon(Icons.delete_outline,
@@ -439,20 +438,20 @@ class _TodoCard extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: item.done
-              ? AppColors.panelBg(context).withOpacity(0.5)
+              ? AppColors.panelBg(context).withValues(alpha: 0.5)
               : AppColors.panelBg(context),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: item.done
-                ? AppColors.stroke(context).withOpacity(0.2)
-                : priorityColor.withOpacity(0.35),
+                ? AppColors.stroke(context).withValues(alpha: 0.2)
+                : priorityColor.withValues(alpha: 0.35),
             width: 1.2,
           ),
           boxShadow: item.done
               ? []
               : [
                   BoxShadow(
-                    color: priorityColor.withOpacity(0.1),
+                    color: priorityColor.withValues(alpha: 0.1),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   ),
@@ -473,7 +472,7 @@ class _TodoCard extends StatelessWidget {
                   border: Border.all(
                     color: item.done
                         ? AppColors.primaryGreen
-                        : priorityColor.withOpacity(0.6),
+                        : priorityColor.withValues(alpha: 0.6),
                     width: 2,
                   ),
                 ),
@@ -530,7 +529,7 @@ class _TodoCard extends StatelessWidget {
               onTap: onDelete,
               child: Icon(
                 Icons.close,
-                color: AppColors.secondaryText(context).withOpacity(0.5),
+                color: AppColors.secondaryText(context).withValues(alpha: 0.5),
                 size: 20,
               ),
             ),

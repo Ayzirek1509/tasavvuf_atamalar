@@ -74,6 +74,8 @@ class NotificationService {
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
@@ -97,11 +99,11 @@ class NotificationService {
   }
 
   static String _randomHadithText() {
-    if (hadiths.isEmpty) {
+    if (hadithsList.isEmpty) {
       return 'Yaxshi so‘z sadaqadir.';
     }
 
-    final item = hadiths[Random().nextInt(hadiths.length)];
-    return item.text;
+    final item = hadithsList[Random().nextInt(hadithsList.length)];
+    return item['full'] ?? item['short'] ?? '';
   }
 }

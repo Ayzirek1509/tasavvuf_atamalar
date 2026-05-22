@@ -159,9 +159,17 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           ],
         ),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 24),
         itemCount: widget.lessons.length,
+        separatorBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+          child: Divider(
+            height: 1,
+            thickness: 1,
+            color: AppColors.primaryGreen.withValues(alpha: 0.4),
+          ),
+        ),
         itemBuilder: (context, index) {
           return _LessonCard(
             lesson: widget.lessons[index],
@@ -209,7 +217,6 @@ class _LessonCard extends StatelessWidget {
     final posMs = position.inMilliseconds.toDouble().clamp(0.0, maxMs);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 14),
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
       decoration: BoxDecoration(
         color: AppColors.panelBg(context),
@@ -217,12 +224,12 @@ class _LessonCard extends StatelessWidget {
         border: Border.all(
           color: isPlaying
               ? AppColors.primaryGreen
-              : AppColors.stroke(context).withOpacity(0.4),
+              : AppColors.stroke(context).withValues(alpha: 0.4),
           width: isPlaying ? 1.8 : 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.stroke(context).withOpacity(0.15),
+            color: AppColors.stroke(context).withValues(alpha: 0.15),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -236,7 +243,7 @@ class _LessonCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryGreen.withOpacity(0.15),
+                  color: AppColors.primaryGreen.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -269,9 +276,9 @@ class _LessonCard extends StatelessWidget {
               thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 7),
               overlayShape: const RoundSliderOverlayShape(overlayRadius: 14),
               activeTrackColor: AppColors.primaryGreen,
-              inactiveTrackColor: AppColors.primaryGreen.withOpacity(0.2),
+              inactiveTrackColor: AppColors.primaryGreen.withValues(alpha: 0.2),
               thumbColor: AppColors.primaryGreen,
-              overlayColor: AppColors.primaryGreen.withOpacity(0.2),
+              overlayColor: AppColors.primaryGreen.withValues(alpha: 0.2),
             ),
             child: Slider(
               min: 0,
@@ -296,7 +303,7 @@ class _LessonCard extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.primaryGreen.withOpacity(0.35),
+                          color: AppColors.primaryGreen.withValues(alpha: 0.35),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -336,10 +343,10 @@ class _LessonCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 7),
                     decoration: BoxDecoration(
-                      color: AppColors.primaryGreen.withOpacity(0.12),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: AppColors.primaryGreen.withOpacity(0.4),
+                        color: AppColors.primaryGreen.withValues(alpha: 0.4),
                         width: 1,
                       ),
                     ),

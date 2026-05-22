@@ -177,10 +177,10 @@ class _TariqatCardState extends State<_TariqatCard> {
               color: AppColors.panelBg(context),
               borderRadius: BorderRadius.circular(24),
               border:
-                  Border.all(color: stroke.withOpacity(0.4), width: 1.2),
+                  Border.all(color: stroke.withValues(alpha: 0.4), width: 1.2),
               boxShadow: [
                 BoxShadow(
-                  color: widget.color.withOpacity(0.1),
+                  color: widget.color.withValues(alpha: 0.1),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 ),
@@ -236,7 +236,7 @@ class _TariqatCardState extends State<_TariqatCard> {
                                       width: _currentPage == i ? 20 : 8,
                                       height: 8,
                                       decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(
+                                        color: Colors.white.withValues(alpha: 
                                             _currentPage == i ? 1 : 0.5),
                                         borderRadius:
                                             BorderRadius.circular(4),
@@ -266,7 +266,7 @@ class _TariqatCardState extends State<_TariqatCard> {
                                       height: 32,
                                       decoration: BoxDecoration(
                                         color:
-                                            Colors.black.withOpacity(0.25),
+                                            Colors.black.withValues(alpha: 0.25),
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
@@ -296,7 +296,7 @@ class _TariqatCardState extends State<_TariqatCard> {
                                       height: 32,
                                       decoration: BoxDecoration(
                                         color:
-                                            Colors.black.withOpacity(0.25),
+                                            Colors.black.withValues(alpha: 0.25),
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
@@ -354,7 +354,7 @@ class _TariqatCardState extends State<_TariqatCard> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 8),
                         decoration: BoxDecoration(
-                          color: widget.color.withOpacity(0.1),
+                          color: widget.color.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -397,7 +397,7 @@ class _FallbackImage extends StatelessWidget {
       height: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color, color.withOpacity(0.7)],
+          colors: [color, color.withValues(alpha: 0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

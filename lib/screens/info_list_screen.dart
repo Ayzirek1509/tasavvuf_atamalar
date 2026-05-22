@@ -139,10 +139,10 @@ class _InfoCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.panelBg(context),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: stroke.withOpacity(0.45), width: 1.2),
+              border: Border.all(color: stroke.withValues(alpha: 0.45), width: 1.2),
               boxShadow: [
                 BoxShadow(
-                  color: stroke.withOpacity(0.2),
+                  color: stroke.withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(2, 4),
                 ),
@@ -162,7 +162,7 @@ class _InfoCard extends StatelessWidget {
                     width: 52,
                     height: 52,
                     decoration: BoxDecoration(
-                      color: AppColors.primaryGreen.withOpacity(0.1),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: CustomPaint(
@@ -184,7 +184,7 @@ class _InfoCard extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Icon(Icons.chevron_right,
-                      color: AppColors.primaryGreen.withOpacity(0.7),
+                      color: AppColors.primaryGreen.withValues(alpha: 0.7),
                       size: 28),
                 ],
               ),
@@ -216,7 +216,7 @@ class _AudioSectionCard extends StatelessWidget {
               gradient: LinearGradient(
                 colors: [
                   AppColors.primaryGreen,
-                  AppColors.primaryGreen.withOpacity(0.85),
+                  AppColors.primaryGreen.withValues(alpha: 0.85),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -224,7 +224,7 @@ class _AudioSectionCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primaryGreen.withOpacity(0.3),
+                  color: AppColors.primaryGreen.withValues(alpha: 0.3),
                   blurRadius: 10,
                   offset: const Offset(2, 4),
                 ),
@@ -238,7 +238,7 @@ class _AudioSectionCard extends StatelessWidget {
                     width: 56,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.25),
+                      color: Colors.white.withValues(alpha: 0.25),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(

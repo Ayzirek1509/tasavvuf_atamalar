@@ -102,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               borderRadius: BorderRadius.circular(24),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.primaryGreen.withOpacity(0.28),
+                  color: AppColors.primaryGreen.withValues(alpha: 0.28),
                   blurRadius: 14,
                   offset: const Offset(0, 6),
                 ),
@@ -187,7 +187,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
-                    color: AppColors.primaryGreen.withOpacity(0.10),
+                    color: AppColors.primaryGreen.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: DropdownButton<String>(
@@ -269,7 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide(
-                        color: AppColors.stroke(context).withOpacity(0.35),
+                        color: AppColors.stroke(context).withValues(alpha: 0.35),
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
@@ -299,7 +299,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       elevation: 4,
-                      shadowColor: AppColors.primaryGreen.withOpacity(0.35),
+                      shadowColor: AppColors.primaryGreen.withValues(alpha: 0.35),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                       ),
@@ -381,11 +381,11 @@ class _CardBox extends StatelessWidget {
         color: AppColors.panelBg(context),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: AppColors.stroke(context).withOpacity(0.32),
+          color: AppColors.stroke(context).withValues(alpha: 0.32),
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.stroke(context).withOpacity(0.18),
+            color: AppColors.stroke(context).withValues(alpha: 0.18),
             blurRadius: 10,
             offset: const Offset(2, 5),
           ),
@@ -411,7 +411,7 @@ class _CircleIcon extends StatelessWidget {
       width: 46,
       height: 46,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.13),
+        color: color.withValues(alpha: 0.13),
         shape: BoxShape.circle,
       ),
       child: Icon(
@@ -476,7 +476,7 @@ class _SwitchTile extends StatelessWidget {
           ),
           Switch(
             value: value,
-            activeColor: Colors.white,
+            activeThumbColor: Colors.white,
             activeTrackColor: AppColors.primaryGreen,
             inactiveThumbColor: Colors.black,
             inactiveTrackColor: Colors.white,
