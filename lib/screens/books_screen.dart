@@ -105,7 +105,7 @@ class BooksScreen extends StatelessWidget {
                         color: AppColors.primaryGreen.withValues(alpha: 0.08),
                         child: Image.asset(
                           b.$4,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -219,7 +219,7 @@ class BookDetailScreen extends StatelessWidget {
                     ),
                     child: Image.asset(
                       imagePath,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
